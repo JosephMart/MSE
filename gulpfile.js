@@ -84,12 +84,12 @@ gulp.task('fonts', function() {
 })
 
 
-gulp.task('watch',['browserSync', 'sass', 'minify-css'], function() {
+gulp.task('watch',['nunjucks', 'browserSync', 'sass', 'minify-css'], function() {
     // trigger Nunjucks render when pages or templates changes
     gulp.watch([PATHS.pages + '/**/*.+(html|js|css)', PATHS.templates + '/**/*.+(html|js|css)'], ['nunjucks'])
     gulp.watch(PATHS.styles + '/*.scss', ['sass']);
     gulp.watch(PATHS.css + '/*.css', ['minify-css']);
-    gulp.watch(PATHS.img + '/**', ['image']);
+    // gulp.watch(PATHS.img + '/**', ['image']);
     // reload browsersync when `dist` changes
     // gulp.watch(PATHS.output + '/**').on('change', browserSync.reload);
 });
@@ -111,9 +111,9 @@ gulp.task('clean:dist', function() {
 })
 
 // run browserSync auto-reload together with nunjucks auto-render
-gulp.task('auto', ['browserSync', 'watch']);
+// gulp.task('auto', ['browserSync', 'watch']);
 
 // Build all
-gulp.task('build', [`clean`, `sass`, `minify-css`, `image`, `nunjucks`], function (){
+gulp.task('build', [`clean:dist`, `sass`, `minify-css`, `image`, `nunjucks`, 'fonts', 'minify'], function (){
   console.log('Building all files');
 })
