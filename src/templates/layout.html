@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Martinsen Software and Electronics Website">
+    <meta name="author" content="Joseph Martinsen">
+
+    <title>
+    {% if title %}
+    {{ title }} | MSE
+    {% else %}
+    MSE
+    {% endif %}
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="header">
+            {% include 'partials/nav.html' %}
+		</div><!-- #header -->
+    <!-- Navigation -->
+
+    <!-- Page Content -->
+
+    <div id="content">
+            {% block content %}
+            {% endblock %}
+		</div><!-- #content -->
+
+    <div id="footer">
+            {% include 'partials/footer.html' %}
+		</div><!-- #footer -->
+
+  </div>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	   <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/functions.js"></script>
+
+    {% block js %}
+    {% endblock %}
+</body>
+
+</html>
