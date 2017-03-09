@@ -30,37 +30,30 @@
 
 <body>
   <div id="wrapper">
+    <!-- Navigation -->
     <div id="header">
             {% include 'partials/nav.html' %}
-		</div><!-- #header -->
-    <!-- Navigation -->
-
+    </div>
     <!-- Page Content -->
-
     <div id="content">
             {% block content %}
             {% endblock %}
-		</div><!-- #content -->
-
+		</div>
     <div id="footer">
             {% include 'partials/footer.html' %}
-		</div><!-- #footer -->
-
+		</div>
   </div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	   <script src="js/jquery-2.1.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/jquery.isotope.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/functions.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.prettyPhoto.js"></script>
+  <script src="js/jquery.isotope.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/functions.js"></script>
 
-    {% block js %}
-    {% endblock %}
+  {% block js %}
+  {% endblock %}
 </body>
 
 </html>

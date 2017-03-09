@@ -27,14 +27,6 @@ gulp.task('image', function () {
     .pipe(gulp.dest(PATHS.output + '/images'));
 });
 
-gulp.task('fonts', function(){
-  console.log('Moving fonts...');
-  return gulp.src(PATHS.fonts + "/.*")
-      .pipe(gulp.dest(PATHS.output + '/fonts'))
-      .pipe(browserSync.reload({
-        stream: true
-    }));
-});
 
 gulp.task('minify-css', function() {
   console.log('Minifying CSS files..');
@@ -79,6 +71,7 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('fonts', function() {
+  console.log('Moving fonts...');
   return gulp.src(PATHS.fonts + '/**/*')
   .pipe(gulp.dest('dist/fonts'))
 })
@@ -109,9 +102,6 @@ gulp.task('minify', function() {
 gulp.task('clean:dist', function() {
   return del.sync(PATHS.output);
 })
-
-// run browserSync auto-reload together with nunjucks auto-render
-// gulp.task('auto', ['browserSync', 'watch']);
 
 // Build all
 gulp.task('build', [`clean:dist`, `sass`, `minify-css`, `image`, `nunjucks`, 'fonts', 'minify'], function (){
