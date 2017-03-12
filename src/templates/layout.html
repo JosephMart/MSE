@@ -1,4 +1,38 @@
 <!DOCTYPE html>
+
+
+{% set navs = [
+    { title: 'Home', url: 'index.html', state: 'home' },
+	{ title: 'Services', url: 'services.html', state: 'services' },
+    { title: 'About', url: 'about-us.html', state: 'about-us' },
+    { title: 'Contact', url: 'contact-us.html', state: 'contact-us' }
+] %}
+
+{% if page == 'contact-us' %}
+	<%
+	PageTitle = "MSE Web Form"
+	FormProcess = Request.ServerVariables("SCRIPT_NAME")
+	homeURL="/"
+
+	subject=Request("subject")
+
+	strUA = Request.ServerVariables("HTTP_USER_AGENT")
+	If InStr(strUA, "MSIE") Then  'it's a Microsoft Browser
+	  intVersion = CInt(Mid(strUA, InStr(strUA, "MSIE") + 5, 1))
+	  If intVersion > 3 Then
+		 isNewIE=True
+		 textCols=100
+	  Else
+		 isNewIE=False	'Is old IE
+		 textCols=75
+	  End If
+	Else
+	  isNewIE=False	'Is Non-IE
+	  textCols=75
+	End If
+	%>
+{% endif %}
+
 <html lang="en">
 
 <head>
@@ -17,7 +51,6 @@
     {% endif %}
     </title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">

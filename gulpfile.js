@@ -48,7 +48,6 @@ gulp.task('sass', function () {
     }));
 });
 
-// writing up the gulp nunjucks task
 gulp.task('nunjucks', function() {
     console.log('Rendering nunjucks files..');
     return gulp.src(PATHS.pages + '/**/*.+(html|js|css)')
@@ -78,13 +77,9 @@ gulp.task('fonts', function() {
 
 
 gulp.task('watch',['nunjucks', 'browserSync', 'sass', 'minify-css'], function() {
-    // trigger Nunjucks render when pages or templates changes
     gulp.watch([PATHS.pages + '/**/*.+(html|js|css)', PATHS.templates + '/**/*.+(html|js|css)'], ['nunjucks'])
     gulp.watch(PATHS.styles + '/*.scss', ['sass']);
     gulp.watch(PATHS.css + '/*.css', ['minify-css']);
-    // gulp.watch(PATHS.img + '/**', ['image']);
-    // reload browsersync when `dist` changes
-    // gulp.watch(PATHS.output + '/**').on('change', browserSync.reload);
 });
 
 gulp.task('minify', function() {
@@ -94,7 +89,7 @@ gulp.task('minify', function() {
         cssmin: true,
         jsmin: true,
         removeOptionalTags: true,
-        removeComments: false
+        removeComments: true
     }))
     .pipe(gulp.dest(PATHS.output));
 });
