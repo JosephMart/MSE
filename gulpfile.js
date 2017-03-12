@@ -8,6 +8,7 @@ const gulp  = require('gulp'),
 var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css');
 var del = require('del');
+var php  = require('gulp-connect-php');
 
 const PATHS = {
     output: 'dist',
@@ -17,9 +18,19 @@ const PATHS = {
     css: 'src/css',
     fonts: 'src/fonts',
     img: 'src/images',
-    fonts: 'src/fonts'
+    fonts: 'src/fonts',
+	php: 'src/php'
 }
 
+
+gulp.task('phpServer', function() {
+    php.server({ base: PATHS.output, port: 8010, keepalive: true});
+});
+
+gulp.task('php', function () {
+  gulp.src(PATHS.php + '/*.php')
+    .pipe(gulp.dest(PATHS.output + '/php'));
+});
 
 gulp.task('image', function () {
   gulp.src(PATHS.img + '/**')
@@ -50,7 +61,7 @@ gulp.task('sass', function () {
 
 gulp.task('nunjucks', function() {
     console.log('Rendering nunjucks files..');
-    return gulp.src(PATHS.pages + '/**/*.+(html|js|css)')
+    return gulp.src(PATHS.pages + '/**/*.+(html|js|css|php)')
         .pipe(nunjucksRender({
           path: [PATHS.templates],
           watch: true,
@@ -61,9 +72,13 @@ gulp.task('nunjucks', function() {
         }));
 });
 
-gulp.task('browserSync', function() {
+gulp.task('browserSync',['phpServer'], function() {
     browserSync.init({
         server: {
+			proxy: '127.0.0.1:8010',
+	        port: 8080,
+	        open: true,
+	        notify: false,
             baseDir: PATHS.output
         },
     });
