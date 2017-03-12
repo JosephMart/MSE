@@ -45,5 +45,5 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 }
 else {
     // echo $responseArray['message'];
-	header( "refresh:0;url=/mse/contact-succes.html" );
+	header( "refresh:0;url=/contact-succes.html" );
 }
