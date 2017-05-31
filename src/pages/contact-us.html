@@ -4,7 +4,6 @@
 {% set page = 'contact-us' %}
 
 {% block content %}
-
 <div style="height: 80px;"></div>
 <div class="container wow fadeInDown" data-wow-duration="800ms" data-wow-delay="300ms">
             <div class="row">
@@ -14,7 +13,6 @@
                         <div class="messages"></div>
 
                         <div class="controls">
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -56,7 +54,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="submit" class="btn btn-send" value="Send message">
+                                    <input id="SubmitButton" type="submit" class="btn btn-send" value="Send message" style="display:none">
+
+                                    <div id="BotCheck">
+                                        <script type="text/javascript">DrawBotBoot()</script>
+
+                                        <div id="errorAlert" class="alert alert-danger" style="display:none">
+                                            <strong>Try Again</strong> The number entered is not correct.
+                                        </div>
+                                        <input id="Button1" type="button" value="Check" class="btn btn-primary" onclick="ValidBotBoot();"/>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -78,4 +86,12 @@
 {% block js %}
 <script src="js/validator.js"></script>
 <script src="js/contact.js"></script>
+<script type="text/javascript">
+    document.getElementById("contact-form").onkeypress = function(e) {
+      var key = e.charCode || e.keyCode || 0;
+      if (key == 13) {
+        e.preventDefault();
+      }
+    }
+</script>
 {% endblock js %}
